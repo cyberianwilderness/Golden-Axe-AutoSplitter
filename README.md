@@ -19,50 +19,62 @@ Create splits or download them from the [Split-Files folder](/Split-Files/)
 Note: The Sega CD and beginner Co-Op categories have not been tested with autosplitters, but Beginner splits should work with Beginner Co-Op.
 
 ## Adding the auto splitter
-Right click on Livesplit
-Click on Edit Layout
-Add Button > Control > Scriptable Auto Splitter (pictured)
+> [!TIP]
+> Right click on Livesplit  
+> Click on Edit Layout  
+> Add Button > `Control` > `Scriptable Auto Splitter` (pictured)  
+
 ![Adding the splits](adding-scriptable-auto-splitter.png)
 
 ---
 
-Select the `GA-ASL.asl` file wherever you have saved it using the browse button
+> [!TIP]
+> Select the `GA-ASL.asl` file wherever you have saved it using the browse button.  
 ![Inserting autosplitter](/Images/selecting-auto-splitter-script-before.png)
 
 ---
 
-Once you have selected it, Livesplit's interface will change
-You should have the option to select the game mode you are running
-Arcade mode will be checked by default, as this has the most speedruns and is the most popular category to play
-If you select more than one option, it will default to Arcade mode (The top option is their for advice)
+> [!TIP]
+> Once you have selected it, Livesplit's interface will change  
+> You should have the option to select the game mode you are running  
+> Arcade mode will be checked by default, as this has the most speedruns and is the most popular category to play  
+> If you select more than one option, it will default to Arcade mode (The top option is their for advice)  
+
 ![Autsplitter Options](/Images/selecting-auto-splitter-script-after.png)
 
 ---
 
-On the same menu where you added the autosplitter before
-Right click on Livesplit
-Click on Edit Layout
-Add Button > Information > ASL Var Viewer (pictured)
+> [!TIP]
+> On the same menu where you added the autosplitter before  
+> Right click on Livesplit  
+> Click on Edit Layout  
+> Add Button > `Information` > `ASL Var Viewer` (pictured)  
 
 ![Adding ASL Var Viewer](/Images/Adding-Var-Viewer.png)
 
-If you don't see this option, you need to make sure the ASL Var Viewer is inside your Livesplit components folder
+> [!CAUTION]
+> If you don't see this option, you need to make sure the ASL Var Viewer is inside your Livesplit components folder.  
 
 ---
 
-To find in-game variables through Livesplit, you need to double click on the ASL Var Viewer you added in the above step
+> [!TIP]
+> To find in-game variables through Livesplit, you need to double click on the ASL Var Viewer you added in the above step.  
+
 ![Accessing ASL Var Variables](/Images/edit-layout-interface.png)
 
 ---
 
-The game must be running for you to get the option click the drop down menu, otherwise it is greyed out.
-In the value label at the top you can provide text that goes along with variable you wish to select.
-For Golden Axe, if you wish to see a precise timer (to the thousandths) for your speedrun, select the RTA_DISPLAY variable (pictured)
+>[!WARNING]
+> The game must be running for you to get the option click the drop down menu, otherwise it is greyed out.  
+
+> [!TIP]
+> In the value label at the top you can provide text that goes along with variable you wish to select.  
+> For Golden Axe, if you wish to see a precise timer (to the thousandths) for your speedrun, select the `RTA_DISPLAY` variable (pictured)  
 
 ![Finding RTA Display](/Images/Finding-RTA-Variable-On-LiveSplit[Game-must-be-on].png)
 
 ---
 
-If it has been successful, your splits should like similar to the following
+If it has been successful, your splits should like similar to the following  
 
 ![End View](/Images/livesplit-appearance.png)
