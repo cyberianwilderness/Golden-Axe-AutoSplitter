@@ -9,9 +9,9 @@ For this script to work you will need
 - The game itself!
 
 # Configuring your livesplit
-Assuming you have Livesplit, ASL Var Viewer and Kega Fusion all downloaded and working
-Insert the ASL Var Viewer into the components folder of Livesplit
-Create splits or download them from the [Split-Files folder](/Split-Files/)
+Assuming you have Livesplit, ASL Var Viewer and Kega Fusion all downloaded and working. 
+Insert the ASL Var Viewer into the components folder of Livesplit. 
+Create your own splits or download them from the [Split-Files folder](/Split-Files/). 
 - [Arcade](/Split-Files/Golden%20Axe%20-%20Arcade.lss)
 - [Beginner](/Split-Files/Golden%20Axe%20-%20Beginner.lss)
 - [Duel](/Split-Files/Golden%20Axe%20-%20The%20Duel.lss)
@@ -24,7 +24,7 @@ Note: The Sega CD and beginner Co-Op categories have not been tested with autosp
 > Click on Edit Layout  
 > Add Button > `Control` > `Scriptable Auto Splitter` (pictured)  
 
-![Adding the splits](adding-scriptable-auto-splitter.png)
+![Adding the splits](/Images/adding-scriptable-auto-splitter.png)
 
 ---
 
