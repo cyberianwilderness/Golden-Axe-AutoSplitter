@@ -75,7 +75,7 @@ Note: The Sega CD and beginner Co-Op categories have not been tested with autosp
 
 ---
 
-> [!INFO]
+> [!NOTE]
 > # Why bother with the RTA timer?  
 > RTA = **R**eal **T**ime **A**ttack (Basically, how long it takes you to complete the game from the first input to the final input in one sitting)  
 > Just to clarify, *it isn't required*.  
