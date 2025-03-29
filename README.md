@@ -63,10 +63,6 @@ Note: The Sega CD and beginner Co-Op categories have not been tested with autosp
 > [!WARNING]
 > In order to access the variables drop down menu, the game must be running. If the game is not running, it will be greyed out.    
 
-> [!TIP]
-> In the value label at the top you can provide text that goes along with variable you wish to select.  
-> For Golden Axe, if you wish to see a precise timer (to the thousandths) for your speedrun, select the `RTA_DISPLAY` variable (pictured)  
-> ![Finding RTA Display](/Images/Finding-RTA-Variable-On-LiveSplit[Game-must-be-on].png)  
 
 ---
 > [!TIP]
@@ -80,3 +76,14 @@ Note: The Sega CD and beginner Co-Op categories have not been tested with autosp
 > RTA = **R**eal **T**ime **A**ttack (Basically, how long it takes you to complete the game from the first input to the final input in one sitting)  
 > Just to clarify, *it isn't required*.  
 > It allows you to accurately time your speedruns, as the livesplit default splitter is not guaranteed to be accurate (when compared to frame counting) and cannot display times down to the thousandths, which you are asked to provide when submitting a run to the [leaderboard](https://www.speedrun.com/golden_axe).  
+
+> [!tip]
+> The rules on the leaderboard include a clear start and end frame
+> Start Frame is the first frame the two characters disappear that you are not using in the character select
+> End Frame is the first frame when you deal the final attack to the final enemy in each category of the game
+> As I cannot find a variable that changes on those exact frames I have calculated the difference between the end time my autosplitter provides and the time taken using the frame count method.
+> This means runs won't start on 0.000 to make up for the differential
+> Therefore
+> Beginner Category: Starts at -1.329
+> Arcade Category: Starts at -6.268
+> Duel Category: Starts at 2.752 
