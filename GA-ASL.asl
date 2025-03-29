@@ -5,23 +5,17 @@ ________________________________________________________________________________
 | Supported Emulators:                                                                                  |
 |   - Kega Fusion v3.64                                                                                 |
 |                                                                                                       |
-| Made by l1ndblum                                                                                      |
+| Made by l1ndblum                                                                                      |                                 
+|   Note: Finding variables to split with that align with the timing rules were diffucult.              |
+|    Therefore, each category will not have the timer start at 0                                        |
+|    This is so that your end time should be the same time given by frame counting                      |
+|    Beginner: Starts at -1.329                                                                         |
+|    Arcade: Starts at -6.268                                                                           |                       |        
+|    Duel: Starts at 2.752                                                                              |                      |
 |_______________________________________________________________________________________________________|
 
 */
 
-/*
-_________________________________________________________________________________________________________
-|                                                                                                       |
-| Things to finish                                                                                      |
-| - [ ] Round 5 is splitting too much and this needs fixed`                                             |
-| - [ ] Tidy Variable Names                                                                             |                                    
-| - [ ] Ending split for beginner mode                                                                  |              
-| - [ ] Work out time it takes betwwen timer starting and first frame the characters disappear so that  |
-| - [ ] Installation Notes                                                                              |
-| - [ ] Remove Debug Statements                                                                         |
-|_______________________________________________________________________________________________________|
-*/
 
 // Define memory addresses
 state("Fusion")
@@ -83,28 +77,19 @@ init
     // Initial variable setup
     vars.timerStarted = false;
     vars.inGame = false;
-    vars.runStartTime = 0;
-    vars.finalRunTime = 0;
     vars.finalTimeRecorded = false;
     vars.splitState = 1;
     vars.extraSplitTriggered = false;
     vars.gameState2Triggered = false;
     vars.currentStage = 1;
-    vars.RTA_DISPLAY = "RTA = 0:00:00.000";
     vars.selectedMode = "Arcade";
     vars.inBattle = false;
+    vars.gameState = 0;
+    vars.arcadeSplit = 0;
 }
 
 update
 {
-    int currentTime = (int)(DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond);
-
-    // Display the run time if timer has started
-    if (vars.timerStarted && !vars.finalTimeRecorded)
-    {
-        int timeElapsed = currentTime - vars.runStartTime;
-        vars.DebugMessage("Run Time: " + (timeElapsed / 1000.0).ToString("F3") + " seconds");
-    }
 }
 
 start
@@ -131,23 +116,18 @@ start
         if (vars.selectedMode == "Arcade" && current.arcadeSplit == 40 && current.gameState == 176)
         {
             vars.timerStarted = true;
-            vars.runStartTime = (int)(DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond);
-            vars.inGame = true;
             vars.DebugMessage("Starting Arcade Mode.");
             return true;
         }
         else if (vars.selectedMode == "Duel" && current.gameState == 112)
         {
             vars.timerStarted = true;
-            vars.runStartTime = (int)(DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond);
             vars.DebugMessage("Starting Duel Mode.");
             return true;
         }
         else if (vars.selectedMode == "Beginner" && current.arcadeSplit == 40 && current.gameState == 176)
         {
             vars.timerStarted = true;
-            vars.runStartTime = (int)(DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond);
-            vars.inGame = true;
             vars.DebugMessage("Starting Beginner Mode.");
             return true;
         }
@@ -168,87 +148,61 @@ split
             if (vars.currentStage == 1 && current.gameState == 96 && current.extraIndicator == 280)  // Thief Round 1
             {
                 vars.currentStage++;
-                vars.DebugMessage("Split: Thief Round 1 completed. Moving to stage " + vars.currentStage);
-                 // Update RTA_DISPLAY after each split
-                vars.RTA_DISPLAY = "RTA = " + TimeSpan.FromMilliseconds(currentTime - vars.runStartTime).ToString(@"h\:mm\:ss\.fff");
                 return true;
             }
             else if (vars.currentStage == 2 && current.gameState == 80)  // Round 2
             {
                 vars.currentStage++;
-                vars.DebugMessage("Split: Round 2 completed. Moving to stage " + vars.currentStage);
-                 // Update RTA_DISPLAY after each split
-                vars.RTA_DISPLAY = "RTA = " + TimeSpan.FromMilliseconds(currentTime - vars.runStartTime).ToString(@"h\:mm\:ss\.fff");
                 return true;
             }
             else if (vars.currentStage == 3 && current.gameState == 96 && current.extraIndicator == 280)  // Thief Round 2
             {
                 vars.currentStage++;
-                vars.DebugMessage("Split: Thief Round 2 completed. Moving to stage " + vars.currentStage);
-                vars.RTA_DISPLAY = "RTA = " + TimeSpan.FromMilliseconds(currentTime - vars.runStartTime).ToString(@"h\:mm\:ss\.fff");
                 return true;
             }
             else if (vars.currentStage == 4 && current.gameState == 80)  // Round 3
             {
                 vars.currentStage++;
-                vars.DebugMessage("Split: Round 3 completed. Moving to stage " + vars.currentStage);
-                vars.RTA_DISPLAY = "RTA = " + TimeSpan.FromMilliseconds(currentTime - vars.runStartTime).ToString(@"h\:mm\:ss\.fff");
                 return true;
             }
             else if (vars.currentStage == 5 && current.gameState == 96 && current.extraIndicator == 280)  // Thief Round 3
             {
                 vars.currentStage++;
-                vars.DebugMessage("Split: Thief Round 3 completed. Moving to stage " + vars.currentStage);
-                vars.RTA_DISPLAY = "RTA = " + TimeSpan.FromMilliseconds(currentTime - vars.runStartTime).ToString(@"h\:mm\:ss\.fff");
                 return true;
             }
             else if (vars.currentStage == 6 && current.gameState == 64)  // Round 4
             {
                 vars.currentStage++;
-                vars.DebugMessage("Split: Round 4 completed. Moving to stage " + vars.currentStage);
-                vars.RTA_DISPLAY = "RTA = " + TimeSpan.FromMilliseconds(currentTime - vars.runStartTime).ToString(@"h\:mm\:ss\.fff");
                 return true;
             }
             else if (vars.currentStage == 7 && current.gameState == 96 && current.extraIndicator == 280)  // Thief Round 4
             {
                 vars.currentStage++;
-                vars.DebugMessage("Split: Thief Round 4 completed. Moving to stage " + vars.currentStage);
-                vars.RTA_DISPLAY = "RTA = " + TimeSpan.FromMilliseconds(currentTime - vars.runStartTime).ToString(@"h\:mm\:ss\.fff");
                 return true;
             }
-            else if (vars.currentStage == 8 && current.gameState == 112)  // Round 5
+            else if (vars.currentStage == 8 && current.gameState == 112 && current.arcadeSplit == 40 && current.extraIndicator == 240)  // Round 5
             {
                 vars.currentStage++;
-                vars.DebugMessage("Split: Round 5 completed. Moving to stage " + vars.currentStage);
-                vars.RTA_DISPLAY = "RTA = " + TimeSpan.FromMilliseconds(currentTime - vars.runStartTime).ToString(@"h\:mm\:ss\.fff");
                 return true;
             }
-            else if (vars.currentStage == 9 && current.gameState == 184)  // Round 6
+            else if (vars.currentStage == 9 && current.gameState == 184 && current.arcadeSplit == 40 && current.extraIndicator == 168)  // Round 6
             {
                 vars.currentStage++;
-                vars.DebugMessage("Split: Round 6 completed. Moving to stage " + vars.currentStage);
-                vars.RTA_DISPLAY = "RTA = " + TimeSpan.FromMilliseconds(currentTime - vars.runStartTime).ToString(@"h\:mm\:ss\.fff");
                 return true;
             }
-            else if (vars.currentStage == 10 && current.gameState == 264 && current.lvl6extraIndicator == 264)  // Round 7
+            else if (vars.currentStage == 10 && current.gameState == 264 && current.extraIndicator == 160 && current.arcadeSplit == 40)  // Round 7 260 40 160
             {
                 vars.currentStage++;
-                vars.DebugMessage("Split: Round 7 completed. Moving to stage " + vars.currentStage);
-                vars.RTA_DISPLAY = "RTA = " + TimeSpan.FromMilliseconds(currentTime - vars.runStartTime).ToString(@"h\:mm\:ss\.fff");
                 return true;
             }
-            else if (vars.currentStage == 11 && current.gameState == 80)  // Round 8
+            else if (vars.currentStage == 11 && current.gameState == 80 && current.extraIndicator == 216)  // Round 8
             {
                 vars.currentStage++;
-                vars.DebugMessage("Split: Round 8 completed. Moving to stage " + vars.currentStage);
-                vars.RTA_DISPLAY = "RTA = " + TimeSpan.FromMilliseconds(currentTime - vars.runStartTime).ToString(@"h\:mm\:ss\.fff");
                 return true;
             }
             else if (vars.currentStage == 12 && current.gameState == 264)  // RunFinish
             {
                 vars.DebugMessage("Split: Arcade run finished.");
-                vars.finalTimeRecorded = true;
-                vars.RTA_DISPLAY = "RTA = " + TimeSpan.FromMilliseconds(currentTime - vars.runStartTime).ToString(@"h\:mm\:ss\.fff");
                 return true;
             }
         }
@@ -260,25 +214,20 @@ split
             vars.DebugMessage("Duel Mode Logic");
             if (current.gameState2 == 328 && !vars.inBattle)
             {
-                vars.DebugMessage("Entering battle: gameState2 = 328");
                 vars.inBattle = true;
                 vars.inLoadingScreen = false;
-                vars.RTA_DISPLAY = "RTA = " + TimeSpan.FromMilliseconds(currentTime - vars.runStartTime).ToString(@"h\:mm\:ss\.fff");
                 return false;
             }
             else if (current.gameState2 == 0 && vars.inBattle && !vars.inLoadingScreen)
             {
-                vars.DebugMessage("Split triggered at start of loading screen: gameState2 = 0");
                 vars.inBattle = false;
                 vars.inLoadingScreen = true;
-                vars.RTA_DISPLAY = "RTA = " + TimeSpan.FromMilliseconds(currentTime - vars.runStartTime).ToString(@"h\:mm\:ss\.fff");
                 return true;
             }
             else if (current.gameState3 == 64 && !vars.finalTimeRecorded)
             {
                 vars.DebugMessage("End of Duel Run.");
                 vars.finalTimeRecorded = true;
-                vars.RTA_DISPLAY = "RTA = " + TimeSpan.FromMilliseconds(currentTime - vars.runStartTime).ToString(@"h\:mm\:ss\.fff");
                 return true;
             }
         }
@@ -289,22 +238,16 @@ split
             if (current.lvl6extraIndicator == 144 && current.gameState == 80 && current.flag == 104 && vars.currentStage == 1)
             {
                 vars.currentStage++;
-                vars.DebugMessage("Split: Round 2 completed. Moving to stage " + vars.currentStage);
-                vars.RTA_DISPLAY = "RTA = " + TimeSpan.FromMilliseconds(currentTime - vars.runStartTime).ToString(@"h\:mm\:ss\.fff");
                 return true;
             }
             else if (current.lvl6extraIndicator == 232 && current.gameState == 80 && current.flag == 232 && vars.currentStage == 2)
             {
                 vars.currentStage++;
-                vars.DebugMessage("Split: Thief Round 2 completed. Moving to stage " + vars.currentStage);
-                vars.RTA_DISPLAY = "RTA = " + TimeSpan.FromMilliseconds(currentTime - vars.runStartTime).ToString(@"h\:mm\:ss\.fff");
                 return true;
             }
             else if (vars.currentStage == 3 && current.gameOver == 288)
             {
                 vars.DebugMessage("Split: Beginner run finished.");
-                vars.finalTimeRecorded = true;
-                vars.RTA_DISPLAY = "RTA = " + TimeSpan.FromMilliseconds(currentTime - vars.runStartTime).ToString(@"h\:mm\:ss\.fff");
                 return true;
             }
         }
@@ -325,7 +268,6 @@ reset
         vars.extraSplitTriggered = false;
         vars.gameState2Triggered = false;
         vars.currentStage = 1;
-        vars.RTA_DISPLAY = "RTA = 0:00:00.000"; // reset timer display
         return true;
     }
     return false;
