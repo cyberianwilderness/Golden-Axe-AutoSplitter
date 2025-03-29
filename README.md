@@ -1,5 +1,5 @@
 # Golden-Axe-AutoSplitter
-Autospliiter script for Golden Axe (SEGA Mega Drive/Genesis Version)
+Autosplitter script for Golden Axe (SEGA Mega Drive/Genesis Version)
 
 > [!TIP]
 > ## Note for speedrunners
