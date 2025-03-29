@@ -1,6 +1,19 @@
 # Golden-Axe-AutoSplitter
 Autospliiter script for Golden Axe (SEGA Mega Drive/Genesis Version)
 
+> [!tip] Note for speedrunners
+> The rules on the leaderboard include a clear start and end frame
+> - Start Frame is the first frame the two characters disappear that you are not using in the character select
+> - End Frame is the first frame when you deal the final attack to the final enemy in each category of the game
+> As I cannot find a variable that changes on those exact frames I have calculated the difference between the end time my autosplitter provides and the time taken using the frame count method.
+> This means runs won't start on 0.000 to make up for the difference in timings
+> For my autosplitter to work, you will need to use my splits, or have splits totalling the same amount as I do. For Arcade mode I used the thieves split to help split consistently, in beginner mode this was not the case
+>Therefore
+> Beginner Category: Starts at `-1.329` [Arcade Livesplit File](/Split-Files/Golden%20Axe%20-%20Arcade.lss)
+> Arcade Category: Starts at `-6.268` [Beginner](/Split-Files/Golden%20Axe%20-%20Beginner.lss)
+> Duel Category: Starts at `2.752` [Duel](/Split-Files/Golden%20Axe%20-%20The%20Duel.lss)
+
+
 # Setup Guidance
 For this script to work you will need
 - [LiveSplit](https://livesplit.org/downloads/)
@@ -77,13 +90,3 @@ Note: The Sega CD and beginner Co-Op categories have not been tested with autosp
 > Just to clarify, *it isn't required*.  
 > It allows you to accurately time your speedruns, as the livesplit default splitter is not guaranteed to be accurate (when compared to frame counting) and cannot display times down to the thousandths, which you are asked to provide when submitting a run to the [leaderboard](https://www.speedrun.com/golden_axe).  
 
-> [!tip]
-> The rules on the leaderboard include a clear start and end frame
-> Start Frame is the first frame the two characters disappear that you are not using in the character select
-> End Frame is the first frame when you deal the final attack to the final enemy in each category of the game
-> As I cannot find a variable that changes on those exact frames I have calculated the difference between the end time my autosplitter provides and the time taken using the frame count method.
-> This means runs won't start on 0.000 to make up for the differential
-> Therefore
-> Beginner Category: Starts at -1.329
-> Arcade Category: Starts at -6.268
-> Duel Category: Starts at 2.752 
