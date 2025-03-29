@@ -10,8 +10,8 @@ ________________________________________________________________________________
 |    Therefore, each category will not have the timer start at 0                                        |
 |    This is so that your end time should be the same time given by frame counting                      |
 |    Beginner: Starts at -1.329                                                                         |
-|    Arcade: Starts at -6.268                                                                           |                       |        
-|    Duel: Starts at 2.752                                                                              |                      |
+|    Arcade: Starts at -6.268                                                                           |              
+|    Duel: Starts at 2.752                                                                              | 
 |_______________________________________________________________________________________________________|
 
 */
